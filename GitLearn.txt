@@ -1,0 +1,237 @@
+1. 安装成功之后
+2. 先配置 姓名和邮箱
+	==> $ git config --global user.name "JeanHu"
+	==> $ git config --global user.email "1226230695@qq.com"
+
+3. 然后找个空目录 创建Git
+	==> cd D:
+	==> mkdir GitDir
+	==> pwd
+
+4. 进入GitDir目录 初始化一个Git仓库 使用git init命令。
+	==> $ git init
+	==> ls -ah   //可查看.git 隐藏文件  ./  ../  .git/
+
+	//在添加文件之前 需将文件的换行符统一成 CRLF 
+	//notepad++ -- 视图 -- 显示符号 -- 显示行尾符 （查看当前的换行符） notepad++ -- 编辑 -- 文档格式转换 -- 选择转换成 windows 格式 就行了
+
+5. 在GitDir目录下 先将文件放进去 
+	第一步 执行add命令告诉Git，把文件添加到仓库
+	==> $ git add if_else.xml
+	
+	// 使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+
+	第二步 用命令git commit告诉Git，把文件提交到仓库
+	==> $ git commit -m "save if_else file"
+
+	[master (root-commit) 719ad95] save if_else file
+	 1 file changed, 36 insertions(+)
+	 create mode 100644 if_else.xml
+
+	// git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。
+	// 1 file changed：1个文件被改动（我们新添加的readme.txt文件）；36 insertions：插入了36行内容（add if_else.xml有36行内容）。
+
+6. 修改上一次的注释
+	第一步  输入git commit --amend，就会进入一个文本编辑界面
+	==> $ git commit --amend
+
+	第二步 修改内容（vi操作）
+	按insert键即可进行修改，改完之后按Esc键退出修改，输入 :exit ,进行保存退出界面
+	
+	第三步 查看仓库当前状态
+	==> $ git status
+    
+	//若enter之后是 nothing to commit,working tree clean ,则说明当前没有需要提交的修改,而且工作目录是干净（working tree clean）的。
+
+7. 若修改了仓库中的文件
+
+	可先查看工作区的状态
+	==> $ git status
+	得到
+	On branch master
+	Changes not staged for commit:
+	  (use "git add <file>..." to update what will be committed)
+	  (use "git checkout -- <file>..." to discard changes in working directory)
+
+			modified:   if_else.xml
+
+	no changes added to commit (use "git add" and/or "git commit -a")
+==================================================================================================
+	然后查看 被修改的文件 修改的内容
+	==> $ git diff
+	得到
+	diff --git a/if_else.xml b/if_else.xml
+	index bf5a3d8..34b2831 100644
+	--- a/if_else.xml
+	+++ b/if_else.xml
+	@@ -1,4 +1,4 @@
+	-<!-- if_else -->
+	+<!-- if_else 二次 -->
+	 <#if pageDataList?? && pageDataList?size gt 0>
+			<div class="">
+			<#list pageDataList as payRecord>
+
+	// 在<!-- if_else -->该注释里面新添加了“二次”
+==================================================================================================	
+	最后重复 add和commit -m 命令的操作，将修改后得内容添加到仓库
+	
+8. 查看已经提交过几次版本到Git仓库
+
+	==> $ git log
+	得到
+	commit 636d3c0596448853f3cf3a849b9145528a7a2630 (HEAD -> master)
+	Author: JeanHu <1226230695@qq.com>
+	Date:   Thu Dec 6 14:11:24 2018 +0800
+
+		201812061410修改了ififelse的注释
+
+	commit 3ad75ed640f488835d2dcccf10bd9fdea243565c
+	Author: JeanHu <1226230695@qq.com>
+	Date:   Thu Dec 6 11:46:25 2018 +0800
+
+		添加了ifelse注释和yml.js文件
+
+	commit 719ad9565202a5110c3aac4c7233d0df736ed606
+	Author: JeanHu <1226230695@qq.com>
+	Date:   Thu Dec 6 11:03:52 2018 +0800
+
+		save if_else file
+		
+==================================================================================================
+	//加上参数 看的简练一些
+	
+	==> $ git log --pretty=oneline
+	得到
+	636d3c0596448853f3cf3a849b9145528a7a2630 (HEAD -> master) 201812061410修改了ififelse的注释
+	3ad75ed640f488835d2dcccf10bd9fdea243565c 添加了ifelse注释和yml.js文件
+	719ad9565202a5110c3aac4c7233d0df736ed606 save if_else file
+
+9. 版本回退
+	返回上一个版本
+	==> $ git reset --hard HEAD^
+	得到
+	HEAD is now at 3ad75ed 添加了ifelse注释和yml.js文件
+	//Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，也就是最新的提交636d3c0...(commitID)，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100
+==================================================================================================
+	检查是否为上一个版本
+	==> $ cat if_else.xml
+	得到 if_else.xml文件里面的内容
+	<!-- if_else -->
+	<#if pageDataList?? && pageDataList?size gt 0>
+        <div class="">
+        <#list pageDataList as payRecord>
+                <#if payRecord.month == .now?string('yyyy-MM')>
+					......
+
+==================================================================================================
+	若是想回到未来的某个版本，只要该命令行窗口没有关掉并且记得那个版本号就可以返回
+	==> $ git reset --hard 636d3
+	得到
+	HEAD is now at 636d3c0 201812061410修改了ififelse的注释
+    ==> $ cat if_else.xml
+	得到
+	<!-- if_else 二次 -->
+
+10. 查看每次命令，可以得知版本号
+	==> $ git reflog
+	得到
+	636d3c0 (HEAD -> master) HEAD@{0}: reset: moving to 636d3
+	3ad75ed HEAD@{1}: reset: moving to HEAD^
+	636d3c0 (HEAD -> master) HEAD@{2}: commit: 201812061410修改了ififelse的注释
+	3ad75ed HEAD@{3}: commit (amend): 添加了ifelse注释和yml.js文件
+	27541d5 HEAD@{4}: commit (amend): 添加了ifelse注释和yml.js文件
+	074b0a6 HEAD@{5}: commit (amend): 添加了ifelse注释和yml.js文件
+	8945af4 HEAD@{6}: commit (amend): 添加了ifelse注释和yml.js文件
+	b03a288 HEAD@{7}: commit (amend): :添加了ifelse注释和yml.js文件
+	43a8f6a HEAD@{8}: commit (amend): :添加了ifelse注释和yml.js文件
+	b27d96e HEAD@{9}: commit (amend): 添加了ifelse注释和yml.js文件
+	e88205d HEAD@{10}: commit: 添加了ifelse注释
+	719ad95 HEAD@{11}: commit (initial): save if_else file
+
+	//HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+	//穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+	//要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+11. 撤销修改
+
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令 ==> git checkout -- file。
+
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令 ==> git reset HEAD <file>，就回到了场景1，第二步按场景1操作。
+
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+
+12. 删除文件
+	 一 是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
+	==>	$ git rm test.txt
+		得到
+		rm 'test.txt'
+
+	==>	$ git commit -m "remove test.txt"
+		得到
+		[master d46f35e] remove test.txt
+		 1 file changed, 1 deletion(-)
+		 delete mode 100644 test.txt
+
+	 另一种情况是删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：
+	==> $ git checkout -- test.txt
+	
+	//git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+	//命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

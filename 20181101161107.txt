@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<message>
+  <head>
+    <transCode>7041</transCode>
+    <transType>90</transType>
+    <transReqTime>20200202160917</transReqTime>
+    <transRepTime>20181101161107</transRepTime>
+    <transSeqNo>1580630957411</transSeqNo>
+    <merchantId>M06C32102001000</merchantId>
+    <productCode>972212</productCode>
+    <netCode>M06C32102001101</netCode>
+    <operatorCode/>
+    <customerId>ucif000000000002924</customerId>
+    <version>1.1</version>
+    <transRepSeqNo/>
+    <returnCode>100007</returnCode>
+    <errorMsg>无执行权限</errorMsg>
+  </head>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+      <Reference URI="">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <DigestValue>h5lLo5acV3c6BZEBWtPyOl6nkPc=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>hlNX+Mcytx61TezzACc/gU7/NVD8laGvwxJHgLLh8uli5UGN6FYY22Yfn7XehB+ZMWnw+dJfOyTC HH/elMWkkZHI/tEx5We5p/oCAbZFIK6q1ylx4zWOpDjpVFB8mi4dJT6fQHJcb0iIZP+hYu0KVQg7 oQBPpjGRw0ltiaZGuf0=</SignatureValue>
+  </Signature>
+</message>

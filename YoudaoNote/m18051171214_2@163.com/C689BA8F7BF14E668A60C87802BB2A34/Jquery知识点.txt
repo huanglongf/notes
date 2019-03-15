@@ -1,0 +1,1048 @@
+javascript：new Option(text, value)
+一般用在动态生成选择项目
+ 
+input radio调整圆圈按钮大小：
+css设置width和height
+ width:18px;height:18px;
+ 
+radio设置按钮与文字对齐：
+margin-right:10px;margin-bottom:3px;
+ 
+Java代码  收藏代码
+法1：  
+ var friendList = document.getElementById('friend');  
+ var option = new Option(data[i].name,data[i].value);  
+ friendList.options[friendList.options.length] = option;  
+法2：  
+ for (var i=0; i < a_opt.length; i++) {  
+         var op = document.createElement("option");  
+         op.text = a_opt[i]; //显示值  
+         op.value = i;  //value  
+         form1.selectTest.add(op);  
+      }  
+}   
+  
+jQuery写法：  
+var friend = $("#friend");  
+friends.empty();  
+for(var i=0;i<data.length;i++) {  
+    var option = $("<option>").text(data.name).val(data.value)  
+    friends.append(option);  
+}  
+ 
+jquery获取元素索引值index()方法：
+ 
+jquery的index()方法 搜索匹配的元素，并返回相应元素的索引值，从0开始计数。
+ 
+如果不给 .index() 方法传递参数，那么返回值就是这个jQuery对象集合中第一个元素相对于其同辈元素的位置。
+如果参数是一组DOM元素或者jQuery对象，那么返回值就是传递的元素相对于原先集合的位置。
+如果参数是一个选择器，那么返回值就是原先元素相对于选择器匹配元素中的位置。如果找不到匹配的元素，则返回-1。 
+Html代码  收藏代码
+<ul>  
+  <li id="foo">foo</li>  
+  <li id="bar">bar</li>  
+  <li id="baz">baz</li>  
+</ul>  
+ $('li').index(document.getElementById('bar')); //1，传递一个DOM对象，返回这个对象在原先集合中的索引位置
+$('li').index($('#bar')); //1，传递一个jQuery对象
+$('li').index($('li:gt(0)')); //1，传递一组jQuery对象，返回这个对象中第一个元素在原先集合中的索引位置
+$('#bar').index('li'); //1，传递一个选择器，返回#bar在所有li中的做引位置
+$('#bar').index(); //1，不传递参数，返回这个元素在同辈中的索引位置。  
+ 
+ wrap/wrapAll/wrapInner:
+原文：
+<ul>
+  <li title='苹果'>苹果</li>
+  <li title='橘子'>橘子</li>
+  <li title='菠萝'>菠萝</li>
+</ul>
+ 
+$("li").wrap("<div></div>");
+每一个选择器都添加
+<ul>
+  <div><li title="苹果">苹果</li></div>
+  <div><li title="橘子">橘子</li></div>
+  <div><li title="菠萝">菠萝</li></div>
+</ul>
+ 
+$("li").wrapAll("<div></div>");
+在所有选中的选择器最外面添加
+<ul>
+  <div>
+    <li title="苹果">苹果</li>
+    <li title="橘子">橘子</li>
+    <li title="菠萝">菠萝</li>
+  </div>
+</ul>
+ 
+$("li").wrapInner("<div></div>");
+在选择器的里面添加
+<ul>
+  <li title='苹果'><div>苹果</div></li>
+  <li title='橘子'>><div>橘子</div></li>
+  <li title='菠萝'>><div>菠萝</div></li>
+</ul>
+ 
+ 
+1.
+ $("p").click(function(){alert("hello world");});
+
+2.
+$("#cssrain").addClass("css_a"); 
+$("tr:even").addClass("alt");
+3.
+   $("#head").click(function(){//加function()
+       $(".content").addClass("c_style");
+    });   
+
+4.
+$("a").click(function(){
+    $(this).hide("slow");  //show("fast")
+    return false;   //链接就会慢慢的消失。
+                //“return false"表示保留默认行为，因此页面不会跳转。
+}); 
+5.
+$("#content").slideToggle("slow",function(){ alert("Hello,cssrain.."); } );
+});  //内容滑上滑下或出现弹出框
+slideUp()
+slideDown();
+
+内容收缩展开
+
+$(document).ready(function(){
+$(".ss").hide();
+$("#check").click(function(){  //点击选中复选框后出现ss
+$(".ss").slideToggle("slow");});
+}); 
+<input type="checkbox" class="checkbox" id="check">
+<div class="ss">
+  <table></table>
+</div>
+
+
+$(".ss").hide();
+$(".ss").show();
+
+6.
+$("#head2").click(function(){
+$("<input type='text' name='ddd' id='ddd' value='hello ,cssrain..' ><br>").appendTo("#ccc");
+}); 
+$("#head1").click(function(){
+$("#rain").append("<input type='text' name='ddd' id='ddd' value='hello ,cssrain..' ><br>");
+});
+
+7.
+toggle()的函数，主要是用来切换元素的显示状态
+只有点击的时候才会触发，hover的时候不可用
+
+  $("input").click(function(){
+     $("p").toggle(); 
+  })
+ 
+<input type="button"  value="切换">
+<p>Hello</p><p style="display: none">Hello Again</p> 
+结果：<p tyle="display: none">Hello</p><p style="display: block">Hello Again</p> 
+
+$("td").toggle(fn1,fn2,fn3...); 
+
+$("td").toggle(
+  function () {
+    $(this).addClass("selected");
+  },
+  function () {
+    $(this).removeClass("selected");
+  }
+); 
+
+$("td").hover(
+  function () {
+    $(this).addClass("hover");
+  },
+  function () {
+    $(this).removeClass("hover");
+  }
+); 
+
+8.
+<input name="oisg_${reFund.refundId?if_exists}" id="${reFund.refundId?if_exists}" type="checkbox" value="${reFund.refundId?if_exists}" class="oisg" />
+<a href="javascript:approvedRefundOne(${reFund.refundId?if_exists})">审批</a>
+
+function approvedRefundOne(refundId){
+    $("#"+refundId).attr("checked",true);    
+
+    //如果没有复选框被选中
+    if($("input:checked").size()==0)  //查找所有选中的复选框元素 返回值Array
+     {
+          alert("没有被提交的数据");
+          $("#"+refundId).attr("checked",false);
+          return ;
+     }
+     //$.each($("input:checked") , function(i, n){
+     //         var myDate=new Date();
+     //         var biaoshi=myDate.getMilliseconds()+"_"+i;
+     //         var productId=$(n).attr("id");
+     //         var productName=$(n).attr("productName");
+     //      }）；
+    document.formManage.action = "<@ofbizUrl>approvedRefund</@ofbizUrl>";
+    document.formManage.submit();
+}
+
+10.
+toggleClass如果存在（不存在）就删除（添加）一个类。
+<p>Hello</p><p class="sed">Hello Again</p> 
+$("p").toggleClass("sed"); 
+<p class="sed">Hello</p>, <p>Hello Again</p>
+
+$(".stripe tr").click(function(){ 
+$(this).toggleClass("click").removeClass("alt")
+})
+//点击变色,注意：因为有隔行变色，所以这里必须在触发toggleClass时,removeClass("alt")
+11.
+找到每个span中所有是p元素的祖先元素。
+$("span").parents("p") 
+
+查找段落的父元素中每个类名为selected的父元素。 
+$("p").parent(".selected") 
+
+
+<p>Hello</p><p class="selected">Hello cssrain.</p><div>
+ $("p").next(".selected").html() 
+
+12.
+<table>
+<tr>
+      <td><input id="btn1"  class="btn" type="button"  value="test"/></td>
+      <td>some text</td>
+</tr>
+</table>
+
+$("#btn1").click(function(){
+alert($(this).parent().next().html());
+//this.parent()是input前面的td
+////this.parent().parent()获取的是tr
+//////this.parent().parent().parent()获取的是table
+////////this.parent().next()获取的是td相临的td
+});
+
+13.
+ 
+Js代码  收藏代码
+获取值：  
+  
+文本框，文本区域：$("#txt").attr("value")；  
+多选框checkbox：$("#checkbox_id").attr("value")；  
+单选组radio：   $("input[@type=radio][@checked]").val();  
+下拉框select： $('#sel').val();  
+  
+控制表单元素：  
+文本框，文本区域：$("#txt").attr("value",'');//清空内容  
+                 $("#txt").attr("value",'11');//填充内容  
+  
+多选框checkbox： $("#chk1").attr("checked",'');//不打勾  
+                 $("#chk2").attr("checked",true);//打勾  
+                 if($("#chk1").attr('checked')==undefined) //判断是否已经打勾  
+  
+单选组radio：    $("input[@type=radio]").attr("checked",'2');//设置value=2的项目为当前选中项  
+下拉框select：   $("#sel").attr("value",'-sel3');//设置value=-sel3的项目为当前选中项  
+                $("<option value='1'>1111</option><option value='2'>2222</option>").appendTo("#sel")//添加下拉框的option  
+                $("#sel").empty()；//清空下拉框  
+ select框值变化时：
+ 
+Java代码  收藏代码
+$(document).ready(function(){   
+  
+$('#mySelect').change(function(){   
+     alert($(this).children('option:selected').val());   
+     var p1=$(this).children('option:selected').val();//这就是selected的值   
+     var p2=$('#param2').val();//获取本页面其他标签的值   
+     window.location.href="xx.php?param1="+p1+"?m2="+p2+"";//页面跳转并传参   
+})   
+})   
+</script>   
+  
+<select id="mySelect">   
+<option value="1">one</option>   
+<option value="2" selected="selected">two</option>   
+<option value="3">three</option>   
+</select>   
+ input框变化时：
+change方法不起作用，在输入框内容变化的时候不会触发change，当鼠标在其他地方点一下才会触发
+用下面的方法会生效：
+Js代码  收藏代码
+$('#eangle').keyup(function(event){  
+        $("#tj").trigger("click");  
+    });  
+ 
+ 
+文本框，文本区域：
+      $("#txt").attr("value")；//获取值
+      $("#txt").attr("value",'');//清空内容
+      $("#txt").attr("value",'11');//填充内容
+多选框checkbox：
+      $("#checkbox_id").attr("value")；
+      或$("#cleanUp").prop("checked")；    
+
+      $("#chk1").attr("checked",'');//不打勾
+      $("#chk2").attr("checked",true);//打勾
+      if($("#chk1").attr('checked')==undefined) //判断是否已经打勾
+
+      $("input[@type=checkbox]").each(function(i){  //有无i不影响
+       // 此时，this 是 dom里的对象，而不是jQuery里的 $(this)
+                if(this.checked) 
+         // alert(this.value);
+             alert($(this).val());都可以
+      });
+      
+       $("#di input:checked").each(function(){
+           // alert(this.value);
+          alert($(this).val());都可以
+       });
+      $("input[@type=checkbox]").not("[@checked]").each(function(){
+      
+      })
+jQuery("input[type='checkbox']").each(function(){
+ 
+})
+
+      <input type="checkbox" id="all" onClick="checkAll(this)" />
+      function checkAll(obj){
+    $(".oisg").attr("checked",$(obj).attr("checked"));
+      }
+
+      if ($('#checkbox-id:checked').val() !== null) //如果有一个复选框被选中
+      $("input[@type=checkbox][@checked]").each(
+           function() { 
+                    }
+      );
+
+      $("#form").submit(function(){
+          if ($("input:checked").attr("value")==undefined) {
+             alert("请至少选择一个！");
+              return false;
+             }
+           return true;
+         });
+
+     if($("#form1 input:checked")){
+         alert($("#form1 input:checked").val());
+       }
+
+单选组radio： 
+      $("input[type='radio']:checked").val();  //可用
+      $("input[@type=radio][@checked]").val(); //可能有问题
+      $("input[name='items']:checked").val();
+      $("input[@name=radio_s][@value=16]").attr("checked",true);（//设置value=16的项目为当前选中项）
+
+      radio单选组的第二个元素为当前选中值
+      $("input[name='items']").get(1).checked = true;
+
+      $("#form1").submit(function(){
+           if($("#form1 input:checked")){
+               alert($("#form1 input:checked").val());
+       }
+      
+下拉框select： 
+      $('#sel').val();  //获取下拉列表中选中项的value
+
+      $('#sel option:selected').text() //获取select被选中项的文本 
+      $("#select_id").find("option:selected").text();  //获取Select选择的Text
+ 
+var vFlag = response.validateFlag ? "Y":"N";
+$("#eValidityFlag").find("option[value="+vFlag+"]").attr("selected",true);
+
+      $("#sel").attr("value",'10');//设置value=10的项目为当前选中项
+      $("11112222").appendTo("#sel")//添加下拉框的option
+      $("#sel").empty()；//清空下拉框
+
+        1. $("#select_id").append("<option value='Value'>Text</option>");  //为Select追加一个Option(下拉项)
+    2. $("#select_id").prepend("<option value='0'>请选择</option>");  //为Select插入一个Option(第一个位置)
+    3. $("#select_id option:last").remove();  //删除Select中索引值最大Option(最后一个)
+    4. $("#select_id option[index='0']").remove();  //删除Select中索引值为0的Option(第一个)
+    5. $("#select_id option[value='3']").remove();  //删除Select中Value='3'的Option
+    5. $("#select_id option[text='4']").remove();  //删除Select中Text='4'的Option
+
+      $("#select1")[0].options(index).selected = true; //使第index个option选中
+      $("#select1")[0].options(3).text //取索引为3的option值 
+      $('#select_id')[0].selectedIndex = 1; //select下拉框的第二个元素为当前选中值  
+
+      $('select>option').each(function(){
+          if($(this).attr('selected')==true){
+                 alert($(this).text());
+            }
+         });
+
+      var s=document.getElementById(selectId);
+      s.options.length
+      var operator=s.options[s.options.selectedIndex].value;
+      var operator2=s.options[s.options.selectedIndex].text;
+
+15.
+$("div .test").addClass("c_style");
+<div>  这里没反应.
+<span ><span  class="test">选择器--后代选择器11</span>选择器--后代选择器11</span>
+<span  class="test">选择器--后代选择器22</span>
+</div>  
+
+$("div a").addClass("cssrain");  //表示div中的a标签,返回的是a标签对象
+$("div[a]").addClass("cssrain"); //包含a标签的div,返回的是div标签对象
+
+组选择器：$("p,#cssrain_id,.cssrain_class").addClass("cssrain_a");
+后代选择器：$("div .test").addClass("c_style");
+子选择器：$("div>.test").addClass("c_style");
+    子选择器只能选择第一代子代.不处理深层嵌套
+    <div><p class="test"></p></div>对这里的p段落标签有效.但对 
+    <div><p><p class="test"></p></p></div>对这里的p段落标签无效,这里要用$("div .test)
+临近选择器：$("div +#test")
+    选取下一个兄弟节点.如:$("div +#test"),id为test的的节点必须是div的下一个兄弟节点. 
+    <div></div><p id="test"></p>在$("div + #test")中能取到p段落节点 
+    <div></div><p></p><p id="test"></p>则不能取到 
+属性选择器
+    $("mix[@attr]"):选取所有该mix且具有attr属性的节点 
+    $("mix[@attr=a_value"]):选取所有该mix且具有attr属性并满足属性值为a_value的节点 
+    $("mix[@attr^=a_value_head"]):attr属性的属性值是以a_value_head开头的 
+    $("mix[@attr$=a_value_end"]):attr属性的属性值是以a_value_end结尾的 
+    $("mix[@attr*=a_value"]):attr属性的属性值中包含a_value 
+
+    $("a[@cssrain=mycssrain]").addClass("c_style");
+    <a href="" name=""  cssrain="mycssrain">aaaaaaaaaa</a>
+
+加号---得到紧接的节点
+alert($("div + p").html());  //tow
+
+<input type="button"  value="test" >
+<p>Three</p>
+<div>first</div>
+<p>tow</p>
+<p>one</p>
+
+17.get():如果没有参数,返回所有,是一个对象数组;如果带参数,必须是数字,基数从0开始.例子: 
+$("div").get():返回一个div对象数组 
+$("div").get(1):返回第二个div对象 
+
+$(选择器部分,选择器来源):
+$("input:radio",document.forms[0]):在文档的第一个表单中,搜索所有单选按钮 
+
+18.<div id="css"><div id="rain">测试</div></div>
+
+$("input").click(function(){
+   // alert($("#css").html());  
+   //输出： <div id="rain">测试</div>
+   // alert($("#css").find("#rain").html());
+    //输出：  测试
+    alert($("#css").find("#rain").end().html());
+   //输出： <div id="rain">测试</div>
+
+//    从上面可以看出，
+//   end()结束对 “#rain” 的引用而返回到 “#css ”
+//   所以“ html()” 是对于 “#css” 起作用的
+//   如果不加end() 则 “html()”是对 #rain 起作用
+});
+
+   1. <div id="test">  
+   2.     <h1>jQuery end()方法</h1>  
+   3.     <p>讲解jQuery中end()方法。</p>  
+   4. </div>  
+
+   1. $(document).ready(function() {  
+   2.     $("#test").click(function() {  
+   3.         $(this).find("p").hide().end().hide();  
+   4.     });  
+   5. }); 
+   点击id为test的div时，首先找到div里边的p标签，将其隐藏。接下来使用end()
+   方法结束了对p标签的引用，此时返回的是#test(jQuery对象)，从而后边的hide()方法隐藏了div。
+
+19.
+<span class="sale">Out Sale: ￥160<br />Deal Price: ￥120</span>
+$("span .sale").text().split("￥")[1]
+160Deal Price:
+
+20.
+<p>I would like to say: </p> 
+$("p").after("<b>Hello</b>"); 
+结果：<p>I would like to say: </p><b>Hello</b> 
+
+21.
+:first:相当于E:eq(0) 
+:last:最后一个匹配的元素
+:even:从匹配的元素集中取序数为偶数的元素
+:not(s):类型为E,不匹配选择器s 
+:eq(n) //从0开始
+:gt(n)
+:lt(n)
+
+$("dl>dd:not(:first)").css("background-color","lightblue");
+<dl>
+   <dd>11111</dd>
+   <dd>222222</dd>
+   <dd>333333</dd>
+<dl>
+
+$('td:empty').html('-');
+
+ $("p").eq(1).text()
+ $("p:eq(1)").text()
+
+22.bind为每一个匹配元素的特定事件（像click）绑定一个事件处理器函数。
+
+$("p").bind("click", function(){
+  alert( $(this).text() );
+}); 
+
+$("form").bind("submit", function() { return false; }) 
+
+
+26.
+<input id="remember" name="remember" type="checkbox"> 
+JS：
+var remember = $("#remember").val();
+为什么我无论是否选中该复选框 remember的值都是on？？？
+因为checkbox的默认value值是on,你checked or unchecked ,只是改变了checked这个属性而已
+
+27.alert($("B:contains('Price')").next().text());
+<TD id=cell-details-name><B>Price:</B><font color=red>$30</font></TD>
+
+28. 
+<div id="formstylecontrols">
+<select id="color">         //第3个 [id设为color,可以直接设置颜色为color:red]
+    <option value="#000000">黑色</option>
+    <option value="#ff0000">红色</option>
+    <option value="#006600">绿色</option>
+    <option value="#0000ff">蓝色</option>       
+</select>
+</div>
+     <p>三月初三，春日晴朗</p>
+
+   1.  $("#color").change(function(){
+                var color = $("color").val();//val是value的值，text是红色等这些值
+                $("p").css({"color":color}); 
+        });
+
+    2.  $("#color").change(function(){
+            $("p").css({color:this.value});
+        });
+
+    3.   $("#formstylecontrols select").change(function(){
+        alert($(this).attr("id")+"   "+$(this).val());
+                $("p").css($(this).attr("id"),$(this).val()); 
+      //这里用了一个技巧：把select的ID和要设置的CSS属性值一致 , 就可以一个语句实现三个select的功能
+        });
+    });
+
+JS:
+$("p").css("font-weight");
+HTML标记:
+<p style="font-weight: bold;">Test Paragraph.</p>
+结果:
+"bold"
+
+Jquery:
+$("p").css({ color: "red", background: "blue" });
+HTML标记:
+<p>Test Paragraph.</p>
+结果:
+<p style="color:red; background:blue;">Test Paragraph.</p>
+
+
+ajaxComplete：Ajax 调用完成后再自动调用此函数
+
+$(this).attr(key); 获取节点属性名的值，相当于getAttribute(key)方法
+$(this).attr(key, value); 设置节点属性的值，相当于setAttribute(key,value)方法
+
+$(this).val();获取某个元素节点的value值，相当于$(this).attr("value");
+$(this).val(value);设置某个元素节点的value值，相当于$(this).attr("value",value);
+
+29.
+<input type="text" id="d"  />
+<p></p>
+
+$("p").text($(this).val());
+
+30.trigger:引起、触发
+模拟单击事件，事实上你并没有单击，而是系统替你完成的 
+ $(document).ready(function(){  
+     $("#btnParent h3").trigger("click");  
+ }); 
+
+31.
+<form class="form">
+姓名:<input type="text"><br>
+呢称:<input type="text"><br>
+连接地址:<input type="text"><br>
+联系方式:<input type="text"><br>
+<input type="button" value="编辑"><br>
+</form>
+<table width="50%" border="0" cellspacing="0" cellpadding="0"> 
+<tbody  class="fillform">
+  <tr>
+    <td>张三</td>
+    <td>css</td>
+    <td>httP://cssrain.cn</td>
+    <td>123456789@qq.com</td>
+    <td>编辑</td>
+  </tr>
+  <tr>
+    <td>李四</td>
+    <td>lisi</td>
+    <td>httP://baidu.com</td>
+    <td>asdfasdasd@qq.com</td>
+    <td>编辑</td>
+  </tr>
+</tbody>
+
+$(function(){  
+        $(".fillform tr").click(function(){ 
+        $(this).find("td").each(function(i){   //注意这个i
+        $("form>input").eq(i).val($(this).text());
+
+    });
+})
+//手型。
+     $(".fillform tr").mouseover(function(){$(this).css("cursor","hand")});
+});
+
+32.右下角提示框：
+a.
+<input type="button" class="notetitle" value="呼出公告">
+
+<div   id="noteview"  style="position: absolute ;width:400px; right:0;bottom:0px;display:none;border:1px solid #000;  ">
+  <table width="100%" cellspacing="0" cellpadding="0" >
+    <TR><TD><a href="javascript:void(0)" class="closediv">close</a></TD></TR>
+    <TR><TD>新闻</TD></TR>
+    <TR><TD id="notecontent"></TD></TR>
+  </table>
+</div>
+
+    $(function(){
+        $(".notetitle").click(function(){
+         $("#noteview").slideDown();
+         $("#notecontent").html("cssrain!!!");  
+    })
+
+        $(".closediv").click(function(){
+           $("#noteview").slideUp();
+         });
+    })
+
+b.进入页面时缓慢滑下，并可根据滚动条滑动 slideDown
+<div id="newnotice" style="right:0px,bottom:1px">
+     <p>
+    <span class="title">最新公告</span>
+        <span id="bts">
+            <label class="button" id="tomin" title="最小化">&nbsp;</label>
+            <label class="button" id="tomax" title="最大化">&nbsp;</label>
+            <label class="button" id="toclose" title="关闭">&nbsp;</label>
+        </span>
+    </p>
+    <div id="noticecon">cssrain.cn---jQuery实用小例子集合 </div>
+</div>
+
+$(function(){
+    $(window).load(function(){
+        $("div[id=newnotice]").css({"right":"0px"});
+        $("div[id=newnotice]").slideDown("slow");
+        //setTimeout(function(){$("div[id=newnotice]").slideUp("slow")},3000);
+        //自动滑下，3秒之后自动隐藏 
+    })
+    .scroll(function(){
+    document.getElementById("newnotice").style.top=document.documentElement.scrollTop+"px";
+       //网页被卷去的高(ie)： document.documentElement.scrollTop;
+    });
+    
+    $("label[id=tomin]").click(function(){
+        $("div[id=noticecon]").slideUp();
+    });
+    
+    $("label[id=tomax]").click(function(){
+        $("div[id=noticecon]").slideDown();
+    });
+    
+    $("label[id=toclose]").click(function(){
+        $("div[id=newnotice]").hide();
+    });
+});
+//scroll : 滚动时候保持在页面右侧底部.
+//resize: 浏览器变化时候  保持在页面右侧底部.
+
+slideUp() :缓慢的将段落滑上 
+
+当页面滚动条变化时，执行的函数
+$(window).scroll( function() { 
+    
+    } ); 
+
+33.
+jQuery处理键盘事件有三个函数,根据事件发生的顺序分别是:
+1    keydown();
+2    keyup();
+3    keypress();
+
+$('input').keydown(function(event){
+    alert(event.keyCode);
+});
+
+$(window).keydown(function(event){
+  switch(event.keyCode) {
+
+  }
+}); 
+
+event.keyCode就可以帮助我们获取到我们按下了什么按键,他返回的是ascII码,比如说上下左右键,分别是38,40,37,39
+IE中可以使用keycode属性，但是在Netscape/Firefox/Opera中不支持window.event.keyCode,
+所以想要在除了IE以外其他浏览器中获得相应输入的Unicode值就需要用event.which来代替event.keyCode
+
+34.轮番滚动 fadeIn/fadeOut
+<div id="dvmq" style="width:363px; height: 32px;" >
+   <ul>
+     <li>1,one</li>
+     <li>2,two</li>
+     <li>3,three</li>
+     <li>4,我走一步，停一停！</li>
+   </ul>
+</div>
+fade：逐渐消失、淡入、淡出
+
+$(function(){
+function scroll_news(){
+    
+      $('#dvmq li').eq(0).fadeOut('slow',function(){        
+            //alert($(this).clone().html());
+         //不克隆的话，remove()就没了。
+            $(this).clone().appendTo($(this).parent()).fadeIn('slow');
+            $(this).remove();  //remove过之后，下一个又成了第一个,用定时器在执行一次
+        });   
+}
+//setInterval('scroll_news()',1000); //会报“缺少对象”
+  setInterval(scroll_news,1000);
+}); 
+
+35.<dt><a href="#">导航1</a></dt>
+    <dd>
+    <ul>
+        <li><a href="#">111111</a></li>
+        <li><a href="#">222222</a></li>
+        <li><a href="#">333333</a></li>
+    </ul>
+    </dd>
+    <dt><a href="#">导航2</a></dt>
+    <dd>
+    <ul>
+        <li><a href="#">4444</a></li>
+        <li><a href="#">55555</a></li>
+        <li><a href="#">666666</a></li>
+        <li><a href="#">77777</a></li>
+    </ul>
+    </dd>
+$(document).ready(function(){
+     $("dd:not(:first)").hide(); //隐藏  dd不是第一个的. E:first:相当于E:eq(0) 
+    
+        $("dt a").click(function(){
+             $("dd:visible").slideUp("slow");
+            $(this).parent().next().slideDown("slow");
+            return false;
+        });
+    });
+
+点击之后先隐藏所以可见dd,然后展开该dt下的dd
+
+// $(this).parent(): <dt><a href="#">导航1</a></dt>
+//$(this).parent().next():  <dd><ul>
+        //<li><a href="#">111111</a></li>
+        //<li><a href="#">222222</a></li>
+        //<li><a href="#">333333</a></li>
+        //</ul>    </dd>
+
+36.$("dl>dd:eq(0),dl>dd:eq(4),dl>dd:eq(7)").css("background-color","lightblue");
+$("dl>dd:not(:first)").css("background-color","lightblue");
+
+$("#input_text").bind("resize",function(){alert("End")});
+
+37.上传预览图片:<br>
+<input id="f1" name="f1" type="file" /><br>
+
+<img id="img1" width="120" height="60" src="http://www.cssrain.cn/skins/tim/logo-jq.gif">
+鼠标滑过预览图片:<div id="large"></div>
+
+<script language="javascript">
+$(function(){
+
+$("#img1").mousemove(function(e){
+   $("#large").css({top:e.pageY,left:e.pageX})  //这个地方也要注意 
+                  .html('<img style="border:1px solid gray;" src="' + this.src + '" />')
+                 .show();
+
+    }).mouseout( function(){
+         $("#large").hide();
+    })
+
+    //上传文件后，将上传到的路径传给#img1 
+    $("#f1").change(function(){
+        $("#img1").attr("src","file:///"+$("#f1").val());
+    });
+});
+</script>
+<style type="text/css">
+    #large{position:absolute;}  //注意必须设置#large的position为absolute，否则只会在img下面的large中显示大图片
+</style>
+
+38.
+after:在每个匹配的元素之后插入内容。
+<p>I would like to say: </p> 
+$("p").after("<b>Hello</b>"); 
+结果：<p>I would like to say: </p><b>Hello</b> 
+
+wrap:把所有匹配的元素 用 其他元素 包裹起来。
+<p>Test Paragraph.</p> 
+$("p").wrap("<div class='wrap'></div>"); 
+结果：<div class="wrap"><p>Test Paragraph.</p> </div> 
+
+39.<td  id="changeContent">HTML页面</td>
+    <td>
+        <select id="s1">
+            <option value="1">HTML页面</option>
+            <option value="2">下载资源</option>
+            <option value="3">超链接资源</option>
+            <option value="4">自测题</option>
+        </select>
+    </td>
+
+$(function(){
+    $("#s1").change(function(){
+        alert($(this).val()+" "+$(this).text());
+           //用$(this).val()获得的是当前选中项的value，但用 $(this)获得的却是所有下拉项的text
+           有点疑问。。。知道的哥们在下面给俺说说呗 
+        $("#changeContent").html( $("option[value="+$(this).val()+"]").html() );
+        //$("#changeContent").html($(this).find("option:selected").text());
+        });
+    });
+ 
+40、模拟单击事件
+事实上你并没有单击，而是系统替你完成的
+Java代码  收藏代码
+$(document).ready(function(){    
+    $("#btnParent h3").trigger("click");    
+});  
+ 
+41、一个例子：
+
+
+ 
+Java代码  收藏代码
+var str = "{'112','121','221','211','121'}";    
+            str = str.replace('{','[').replace('}',']');    
+            alert(str);  // ['112','121','221','211','121']  
+            var arr = eval(str);  //typeof(arr) == object  
+            //arr = str;          //typeof(arr) == string  
+                     //alert(arr+" "+typeof(arr));    
+            var reg = /^.*1+.*1+.*$/;   // .代表除\n外的任一字符  
+            var count = 0;    
+            jQuery.each(arr,function(i){    
+                if(reg.exec(arr[i])){    
+                    count++;    
+                }    
+            });    
+            alert(count);   
+   思路：先转换为 ['112','121','221','211','121']字符串，再通过eval转换为Object类型，最后通过模式匹配获得个数。
+ 
+ 
+ 
+ 
+ 
+ 
+易错点：
+ 
+Java代码  收藏代码
+1、  
+var arr1 = [ "one", "two", "three", "four", "five" ];    
+$.each(arr1, function(){    
+    alert(this);    
+});    
+//输出：one   two  three  four   five   
+  
+2、  
+jQuery.each( { name: "John", lang: "JS" }, function(i, n){  
+    alert( "Key: " + i + ", Value: " + n );  
+});  
+//结果：Key:name, Value: John  
+//  Key:lang, Value: JS  
+  
+var obj = { one:1, two:2, three:3, four:4, five:5 };    
+$.each(obj, function(key, val) {    
+    alert(obj[key]);          
+});    
+//输出：1   2  3  4  5    
+  
+3、  
+jQuery.each( [3,6,8], function(i, n){  
+     alert( "Item#" + i + ": " + n );  
+});  
+//结果：Item#0: 3  
+//      Item#1: 6  
+//      Item#2: 8  
+  
+var arr2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]    
+$.each(arr2, function(i, item){    
+    alert(item[0]);    
+});    
+//输出：1   4   7  
+ 
+ 
+ 
+ 
+ 
+
+ window.onload执行的时候，必须要所有的内容都载入才执行(包括窗口，框架，对象和图像等等)，当我们的网页有大量的图片的时候，必须要等待图片全部加载完才能后续执行。
+$(document).ready(fn):当DOM载入就绪后就可以绑定一个要执行的函数。因此不必等到所有的内容加载再执行，所以极大地提高web应用程序的响应速度。 
+ $(document).ready()是在DOM结构载入完后执行的，而window.onloal是得在所有文件都加载完后执行的，一个是DOM加载完，一个是所有文件加载完
+ 
+ 
+jQuery.inArray(value,array) 
+确定第一个参数在数组中的位置(如果没有找到则返回 -1 )。
+参数
+value (Any) : 用于在数组中查找是否存在
+array (Array) : 待处理数组。
+Java代码  收藏代码
+var arr = [ 4, "Pete", 8, "John" ];  
+jQuery.inArray("John", arr);  //3  
+jQuery.inArray(4, arr);  //0  
+jQuery.inArray("David", arr);  //-1  
+ 
+1.jquery获取当前元素的索引值
+jQuery获取当前元素的索引值还是很方便的，比如一大堆的li，当鼠标移上去的时候，你知道这个li是众多li中的第几个吗？
+ 
+Java代码  收藏代码
+$("li").hover(function(){      
+     alert($("li").index(this));      
+});   
+ .index函数还是很好用的。它的说明为： 搜索与参数表示的对象匹配的元素，并返回相应元素的索引值。如果找到了匹配的元素，从0开始返回；如果没有找到匹配的元素，返回-1。
+ 
+2.实现键盘记录的e.which和e.keyCode
+具体详见
+http://www.cnblogs.com/sunny_kitty/archive/2009/10/28/1591302.html（比较全）
+http://zhidao.baidu.com/question/57800991.html
+ 
+3.jquery鼠标事件
+     mousedown(fn)
+      mouseout(fn)
+      mouseover(fn)
+      mouseup(fn)
+ 
+ mousemove 事件通过鼠标在元素上移动来触发。事件处理函数会被传递一个变量——事件对象，其.pageX和 .pageY属性代表鼠标的坐标
+ 
+Java代码  收藏代码
+$(document).mousemove(function(e){  
+  $("span").text(e.pageX + ", " + e.pageY);  
+});  
+ 
+4.typeof
+返回一个用来表示表达式的数据类型的字符串。
+typeof 运算符把类型信息 当作字符串返回 。typeof 返回值有六种可能： "number," "string," "boolean," "object," "function," 和 "undefined."
+ 
+一、对于数字类型的操作数而言， typeof 返回的值是 number。比如说：typeof(1)，返回的值就是number。
+上面是举的常规数字，对于非常规的数字类型而言，其结果返回的也是 number。比如typeof(NaN)，NaN在JavaScript中代表的是特殊非数字值，虽然它本身是一个数字类型。
+二、对于字符串类型， typeof 返回的值是 string。比如typeof("123")返回的值是string。
+三、对于布尔类型， typeof 返回的值是 boolean 。比如typeof(true)返回的值是boolean。
+四、对于对象、数组、null 返回的值是 object 。比如typeof(window)，typeof(document)，typeof(null)返回的值都是object。
+五、对于函数类型，返回的值是 function。比如：typeof(eval)，typeof(Date)返回的值都是function。
+六、如果运算数是没有定义的（比如说不存在的变量、函数或者undefined），将返回undefined。比如：typeof(sss)、 typeof(undefined)都返回undefined。
+结果：
+
+
+ 
+5、Jquery中使用setInterval和setTimeout：
+直接在ready中调用其他方法，会提示缺少对象的错误，解决方法如下：
+方法1. 应用jQuery的扩展可以解决这个问题。 
+$(document).ready(function(){
+
+$.extend({
+  show:function(){
+   alert("ready");
+  }
+});
+setInterval("show()",3000);
+});
+
+方法2. 指定定时执行的函数时不要使用引号和括号。 
+$(function(){
+function show(){
+   alert("ready");
+}
+setInterval(show,3000);// 注意函数名没有引号和括弧！
+// 使用setInterval("show()",3000);会报“缺少对象”
+});
+ 
+区别：
+ 
+setTimeout()
+　　 从载入后延迟指定的时间去执行一个表达式或者是函数;
+      仅执行一次 ;和window.clearTimeout一起使用.
+setInterval()
+　　 在执行时,它从载入页面后每隔指定的时间执行 一个表达式或者是函数;(功能类似于递归函数)；和window.clearInterval一起使用.
+ 
+ 
+6、jquery each 函数里面如何实现break与continue?
+Java代码  收藏代码
+$('input').each(function(){  
+    if($(this).val() == ''){  
+        // do something  
+         if(1==1)return false; // 使用return false 来实现跳出循环。  
+         else return true; // 使用return true 来实现进入下一个循环。  
+    }  
+});  
+ 
+7、Jquery去除重复元素：
+Java代码  收藏代码
+var a=[1,2,3,3];      
+      
+jQuery.extend({      
+    uniqueArray:function(a) {      
+        var r=[];      
+        for (var i=0,l=a.length; i<l; ++i){  
+       if(jQuery.inArray(a[i],r)<0)    //jQuery.inArray(value, array)  
+                       //确定第一个参数在数组中的位置，从0开始计数(如果没有找到则返回 -1 )                                 
+       r.push(a[i]);      
+    }  
+        return r;      
+   }      
+})   
+ 
+8、jQuery判断页面元素是否存在
+在传统的Javascript里，当我们对某个页面元素进行某种操作前，最好先判断这个元素是否存在。原因是对一个不存在的元素进行操作是不允许的。
+Js代码  收藏代码
+document.getElementById("someID").innerText("hi");   
+ 
+如果ID为"someID"的元素不存在，我们将得到Javascript运行错误：document.getElementById("someID") is null 
+正确的写法应该是： 
+Js代码  收藏代码
+obj = document.getElementById("someID");   
+if (obj){   
+    obj.innerText("hi");   
+}   
+ 
+那么在jQuery，我们如何判断页面元素存在与否呢？如果参照上面的传统Javascript的写法，我们第一个想到的办法一定是： 
+Js代码  收藏代码
+if ($("#someID")){   
+$("#someID").text("hi");   
+}   
+ 
+可是这么写是不对的！因为jQuery对象永远都有返回值，所以$("someID") 总是TRUE ，IF语句没有起到任何判断作用。正确的写法应该是： 
+Js代码  收藏代码
+//判断jQuery对象的长度   
+if ( $("#someID").length > 0 ) {   
+    $("#someID").text("hi");   
+}   
+  
+//将jQuery对象转换成DOM对象进行判断    
+if($('#someID')[0]){    
+    
+}   
+ 
+注意 ：判断某个页面元素存在与否在jQuery实际上是没有必要的，jQuery本身会忽略 对一个不存在的元素进行操作，并且不会报错。 
+ 
+9、二维码扫描后，文本框相当于输入后回车
+Html代码  收藏代码
+<tr>  
+    <td>  
+    二维码：<input type="text" id="strQRCode" name="strQRCode" maxlength="100" size="50" onkeypress="if(event.keyCode==13) {btn.click();return false;}"/>  
+    <input type="hidden" value="保存" name="btn" id="btn" onclick="check()"/>  
+    </td>  
+ </tr> 

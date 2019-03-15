@@ -1,0 +1,159 @@
+﻿发包流程
+
+测试环境：
+tos 22.144.101.102
+oms 22.144.101.111
+
+
+生产环境：
+mstsc
+进入生产环境--》222.66.25.28:33089  用户名：baobin  密码：201810@HelloworldRR
+APP服务器--》172.16.23.180    172.16.23.181    用户名：tomcat6  密码：!QAZ2wsx
+发包地址 ：/app/tomcat6/apache-tomcat-6.0.53/webapps
+备份解压包：tar -cvf evertos20180522.tar evertos
+
+
+
+测试环境》》》》 
+ucif 
+22.144.101.145
+cd /usr/tmp/workspace/
+ll
+scp ucif.war tomcat6@22.144.101.106:/app/tomcat6/tomcat-ucif-cos/webapps/
+0okm(IJN
+22.144.101.106
+cd /app/tomcat6/tomcat-ucif-cos/webapps/
+rm -rf *
+cd bin
+./shutdown.sh 
+./startup.sh 
+
+finace 
+22.144.101.145
+cd /root/.jenkins/workspace/boccfc-finace/subsys/cos/target
+ll
+scp finace.war tomcat6@22.144.101.101:/app/tomcat6/tomcat-finace/webapps/
+
+emall
+22.144.101.145
+cd /usr/tmp/workspace/
+scp emall.war tomcat6@22.144.101.104:/app/tomcat6/tomcat-payfees/webapps/
+
+22.144.101.104
+tomcat6   0okm(IJN
+cd /app/tomcat6/tomcat-payfees/
+ 
+
+1、生成应用包
+进入第一个pom.xml文件下(D:\workspace\boccfc\2.0.4\boccfc_2.0.4)
+shift+右击 ==》 在此处打开命令窗口
+输入命令   mvn clean package -Dmaven.test.skip=true
+
+2、停服务
+	方法一
+	ps -ef|grep tomcat    查看当前进程
+	cd /app/tomcate6/tomcat-finace/bin    进入bin目录
+	./shutdown.sh    停服务
+	
+	/**
+	 *	cd /app/tomcate6/apatch-tomcat-6.0.53/bin
+	 *	./shutdown.sh 
+	 */
+  
+	方法二
+	ps -ef|grep tomcat 
+	kill -9 进程号（最长的那个服务进程）
+
+3、备份及删除包
+  cd webapps/     进入tomcat-finace 目录下的webapps
+  tar -cvf 备份后文件名.gz  需备份的文件名   （备份）
+  例如 tar -cvf finace0613.tar finace 
+  rm -rf 解压后的应用包和上次上传的war包 （删除）
+  例如 rm -rf finace 和 rm -rf finace.war
+
+4、删除localhost文件夹
+  rm -rf ../work/*
+
+5、上传生产应用包
+  cd ../../webapps/
+  方法一：rz （弹出选择文件框）
+  方法二：SFTP   put/get   (alt + p )
+  方法三：Xftp 工具
+
+6、启动服务
+  cd ../bin
+  ./startup.sh （启动服务）
+
+7、查看启动日志
+  cd  ../logs/ 
+  tail -f catalina.out  
+  cd catalina今天日期 ,看到 时间表示成功，看到skip表示失败，失败先clean再team、update 
+
+8、查看应用日志（生产路径可能与测试路径不一致）
+
+1）.  进入finace目录
+		cd /applog/tomcat6/finace/
+2）.  进入要查询的日志
+		cd 20180919
+3）.  若是有多条，则采用搜索关键字的方法，看看哪条里面有
+		grep '关键字'  finace.* 
+4）.  进入查到的日志
+		view  finace.3.log
+5）.  查找关键字
+		/关键字
+Ctrl+F  向下翻  
+Ctrl+B  向上翻  
+ N（往上）  n（往下）  查找同一关键字
+ G  直接看末尾
+
+查看服务器时间
+date
+改服务器时间
+su -
+0okm(IJN  密码
+date -s '2018-08-06 17:53:00'
+exit退出root  
+
+9、获取145上的war包
+
+1） 找到获取文件的地址
+	cd /usr/tmp/workspace/
+2） 查看该路径下的文件
+	ls
+3） 更改存放路径
+	lpwd
+	lcd C:\Users\boccfc\Desktop
+	lpwd
+4） 获取想要的war包
+	get finace.war
+5） 查看获取到的war包放哪儿了
+	lpwd
+  
+22.144.101.103 61616
+先关进程，再用命令启动
+ps -ef |grep activemq   //找到mq相关的进程
+
+kill -9 进程号    //关掉 server1 2 3
+
+./activemq start   //启动服务
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

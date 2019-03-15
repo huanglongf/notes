@@ -1,0 +1,14 @@
+--  ˝æ›ø‚≈‰÷√
+-- db.type=oracle
+-- jdbc.alias=DBPool
+-- jdbc.host=22.144.103.101
+-- jdbc.driverClassName=oracle.jdbc.driver.OracleDriver
+-- jdbc.url=jdbc:oracle:thin:@22.144.103.101:1521:cosdb
+-- jdbc.username=businessdb
+-- jdbc.password=businessdb
+-- jdbc.testOnBorrow=true
+-- jdbc.validationQuery=select * from dual
+-- jdbc.initialSize=15
+--jdbc.maxActive=30
+-- jdbc.maxIdle=2
+-- jdbc.minIdle=0

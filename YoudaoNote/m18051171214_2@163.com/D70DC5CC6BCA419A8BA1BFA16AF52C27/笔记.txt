@@ -1,0 +1,86 @@
+正常请假请在jira系统提交审批。
+    jira网址：http://jira.gtja.net/secure/Dashboard.jspa。
+
+
+微信集群   http://weixin.gtja.com/everoms-test/login.html 
+账号密码   gtja@admin   admin.gtja685
+
+新地址：http://wxjq.gtja.net/everoms/login.html 
+	http://wxjq.gtja.net/everoms-test/login.html
+
+
+连网    用户名：jianghuihui  密码：2017jiang_gtja
+	用户名：CP_hujian    密码：d8SH0o 新 098207Hj-
+
+
+JetBrains激活
+
+JetBrains 授权服务器(License Server URL):http://idea.imsxm.com
+
+使用方法：激活时选择License server 填入http://idea.imsxm.com 点击Active即可。
+
+
+有道云笔记   18051171214@163.com   4715606WING
+
+
+数据库密码  admin123456
+
+
+SVN  hujian   hj#ever0978  提交周报 svn://121.41.20.231/gtja-docs 
+
+
+svn://121.41.20.231/evermsg/branches/3.0.0 
+
+
+菜单上下拖动参考网页
+http://www.runoob.com/jqueryui/example-sortable.html
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+view-source:http://www.js-css.cn/divcss/layout/
+http://www.js-css.cn/divcss/layout/
+
+
+$(function () {
+    $("dt").on("click", function () {
+        alert($(this).index("dt"));
+    });
+});
+ 
+//index索引从0开始
+
+
+参考的图文编辑器链接 ： http://www.moke8.com/code/m64277/
+
+
+春夏秋冬
+公众号账户  renzenggang@everelegance.com.cn
+公众号密码  renzg@weixin
+
+微信公众号
+https://mp.weixin.qq.com/
+
+
+调用腾讯接口
+http://blog.csdn.net/fengqingtao2008/article/details/51469705
+
+日志归集
+http://10.181.13.65/kibana/app/kibana# 
+
+
+微信公众号开发
+http://www.cnblogs.com/deng-cc/p/6868234.html
+
+图片上传设置
+http://blog.csdn.net/alistring/article/details/55510907
+
+
+投票管理
+https://dzsw.svn.gtja.net/svn/WLC/P1631801_IMOBILEAPP/Src/02Trunk
+
+考试网
+http://km.gtja.net/user/login.php
+
+用户名： CP_hujian  初始密码： gtjaWBpassw0rd 
+
+
